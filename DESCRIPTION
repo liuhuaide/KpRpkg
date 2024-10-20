@@ -13,6 +13,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 VignetteBuilder: knitr
 Suggests: 
+    profvis,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
