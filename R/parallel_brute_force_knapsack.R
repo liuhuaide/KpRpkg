@@ -13,9 +13,7 @@
 #'          - `elements`: A vector of indices indicating which items are included in the optimal solution.
 #' @export
 
-
 parallel_brute_force_knapsack <- function(x, W, parallel = FALSE) {
-  library(parallel)
   # 检查输入
   if (!is.data.frame(x)) stop("x must be a data frame")
   if (!all(c("v", "w") %in% colnames(x))) stop("The data frame must contain columns 'v' and 'w'")
@@ -32,10 +30,10 @@ parallel_brute_force_knapsack <- function(x, W, parallel = FALSE) {
   # 如果开启并行计算
   if (parallel) {
     # 创建集群
-    cl <- makeCluster(detectCores() - 1)  # 留出一个核心
+    cl <- parallel::makeCluster(parallel::detectCores() - 1)  # 留出一个核心
     
     # 使用 parSapply 来并行计算每种组合
-    results <- parSapply(cl, combinations, function(i) {
+    results <- parallel::parSapply(cl, combinations, function(i) {
       combination <- as.logical(intToBits(i)[1:n])
       total_weight <- sum(x$w[combination])
       total_value <- sum(x$v[combination])
@@ -48,7 +46,7 @@ parallel_brute_force_knapsack <- function(x, W, parallel = FALSE) {
     })
     
     # 关闭集群
-    stopCluster(cl) 
+    parallel::stopCluster(cl) 
     
     # 找到最大价值和最佳组合
     max_index <- which.max(results[1, ])

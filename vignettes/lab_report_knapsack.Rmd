@@ -129,12 +129,12 @@ Profvis shows that the execution time of the optimized function is 60ms shorter 
 # Parallelize_brute_force_search
 
 ```{r parallel_brute_force_knapsack}
-resultd <- parallel_brute_force_knapsack(x = knapsack_objects[1:22,], W = 3500,parallel = TRUE)
+resultd <- parallel_brute_force_knapsack(x = knapsack_objects[1:22,], W = 3500,parallel = FALSE)
 timed <- system.time({
-  result <- parallel_brute_force_knapsack(x = knapsack_objects[1:22,], W = 3500,parallel = TRUE)
+  result <- parallel_brute_force_knapsack(x = knapsack_objects[1:22,], W = 3500,parallel = FALSE)
 })
 print(resultd)
 print(timed)
 ```
 
-By introducing parallel computation, the function is able to reduce computation time and improve efficiency when dealing with large data sets, which is particularly important for brute_force_knapsack algorithms, because its time complexity increases rapidly with the number of items.In this example, when n=22 and W=3500, the execution time of the original brute_force_knapsack is about 14.6 seconds, and the execution time of the parallel brute_force_knapsack is about 10 seconds.
+By introducing parallel computation, the function is able to reduce computation time and improve efficiency when dealing with large data sets, which is particularly important for brute_force_knapsack algorithms, because its time complexity increases rapidly with the number of items.In this example, when n=22 and W=3500, the execution time of the original brute_force_knapsack is about 14.6 seconds, and the execution time of the parallel_brute_force_knapsack is about 10 seconds(you should set: parallel = TRUE).
