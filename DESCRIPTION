@@ -1,14 +1,22 @@
 Package: KpRpkg
-Title: What the Package Does (One Line, Title Case)
+Title: Three ways to solve the knapsack problem
 Version: 0.0.0.9000
 Authors@R: 
-    c(person("Huaide", "liu", , "jcakcino@gmail.com", role = c("aut", "cre")),
-      person("wang", "liao", , "liaowang913@outlook.com", role = "aut"))
-Description: What the package does (one paragraph).
+    c(person("Huaide", "Liu", , "jcakcino@gmail.com", role = c("aut", "cre")),
+      person("Wang", "Liao", , "liaowang913@outlook.com", role = "aut"))
+Description: This package can calculate the knapsack problem in 3 ways:
+             brute_force_knapsack, knapsack_dynamic and greedy_knapsack.
+             At the same time, some optimization methods to improve code performance are also introduced
 License: GPL-2 | GPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Imports:
+    parallel
+    
