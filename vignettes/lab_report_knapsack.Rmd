@@ -2,7 +2,7 @@
 title: "lab_report_knapsack"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{my-vignette}
+  %\VignetteIndexEntry{lab_report_knapsack}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -47,15 +47,17 @@ knapsack_objects <- data.frame(
 brute_force_knapsack:
 
 ```{r brute_force_search}
-brute_force_knapsack(x = knapsack_objects[1:8,], W = 3500)
+resultA <- brute_force_knapsack(x = knapsack_objects[1:8,], W = 3500)
+print(resultA)
 ```
 
 We can also know the performance of the program execution:
 
 ```{r system_time_brute_force_search}
-system.time({
+timeA <- system.time({
   result <- brute_force_knapsack(x = knapsack_objects[1:16,], W = 3500)
 })
+print(timeA)
 ```
 
 This result will show that the brute_force_knapsack execution time is around 0.22S when n=16 and W=3500.
@@ -63,15 +65,17 @@ This result will show that the brute_force_knapsack execution time is around 0.2
 # knapsack_dynamic
 
 ```{r knapsack_dynamic}
-knapsack_dynamic(x = knapsack_objects[1:8,], W = 3500)
+resultB <- knapsack_dynamic(x = knapsack_objects[1:8,], W = 3500)
+print(resultB)
 ```
 
 We can also know the performance of the program execution:
 
 ```{r system_time_knapsack_dynamic}
-system.time({
+timeB <- system.time({
   result <- knapsack_dynamic(x = knapsack_objects[1:500,], W = 3500)
 })
+print(timeB)
 ```
 
 This result will show that the knapsack_dynamic execution time is around 2.60S when n=500 and W=3500.
@@ -79,7 +83,8 @@ This result will show that the knapsack_dynamic execution time is around 2.60S w
 # greedy_knapsack
 
 ```{r greedy_knapsack}
-greedy_knapsack(x = knapsack_objects[1:800,], W = 3500)
+resultc <- greedy_knapsack(x = knapsack_objects[1:800,], W = 3500)
+print(resultc)
 ```
 
 We can also know the performance of the program execution:
@@ -92,9 +97,10 @@ knapsack_objects <- data.frame(
   w = sample(1:4000, size = n, replace = TRUE), 
   v = runif(n = n, 0, 10000)
 )
-system.time({
+timeC <- system.time({
   result <- greedy_knapsack(x = knapsack_objects, W = W)
 })
+print(timeC)
 ```
 
 This result will show that the knapsack_dynamic execution time is around 1.23S when n=1000000 and W=2000000.
@@ -123,10 +129,12 @@ Profvis shows that the execution time of the optimized function is 60ms shorter 
 # Parallelize_brute_force_search
 
 ```{r parallel_brute_force_knapsack}
-parallel_brute_force_knapsack(x = knapsack_objects[1:22,], W = 3500,parallel = TRUE)
-system.time({
+resultd <- parallel_brute_force_knapsack(x = knapsack_objects[1:22,], W = 3500,parallel = TRUE)
+timed <- system.time({
   result <- parallel_brute_force_knapsack(x = knapsack_objects[1:22,], W = 3500,parallel = TRUE)
 })
+print(resultd)
+print(timed)
 ```
 
 By introducing parallel computation, the function is able to reduce computation time and improve efficiency when dealing with large data sets, which is particularly important for brute_force_knapsack algorithms, because its time complexity increases rapidly with the number of items.In this example, when n=22 and W=3500, the execution time of the original brute_force_knapsack is about 14.6 seconds, and the execution time of the parallel brute_force_knapsack is about 10 seconds.

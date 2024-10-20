@@ -2,4 +2,6 @@
 
 export(brute_force_knapsack)
 export(greedy_knapsack)
+export(greedy_knapsack_optimized)
 export(knapsack_dynamic)
+export(parallel_brute_force_knapsack)
